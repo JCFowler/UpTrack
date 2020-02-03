@@ -1,0 +1,19 @@
+<ActionBar >
+    <Label text="Home"></Label>
+</ActionBar >
+
+<StackLayout *ngIf="data$ | async; let data">
+    <Label [text]="'Push Up Goal: ' + data.pushUpGoal"></Label>
+    <Label [text]="'Sit Up Goal: ' + data.sitUpGoal"></Label>
+
+    <StackLayout>
+        <Label text="Push Ups:"></Label>
+        <TextField></TextField>
+    </StackLayout>
+
+    <StackLayout>
+        <Label text="Sit Ups:"></Label>
+        <TextField></TextField>
+    </StackLayout>
+    
+</StackLayout>

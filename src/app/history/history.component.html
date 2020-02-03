@@ -1,0 +1,13 @@
+<ActionBar>
+    <Label text="History"></Label>
+</ActionBar>
+
+<GridLayout>
+    <ListView *ngIf="data$ | async; let data" [items]="data.days">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [nsRouterLink]="['../item', item.id]" [text]="item.name"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>
