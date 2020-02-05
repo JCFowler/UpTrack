@@ -1,19 +1,26 @@
-<ActionBar >
-    <Label text="Home"></Label>
-</ActionBar >
+<GridLayout *ngIf="data$ | async; let data" rows="auto, auto, auto, *, auto">
+    <Label class="main-label" row="0" [text]="today | date"></Label>
 
-<StackLayout *ngIf="data$ | async; let data">
-    <Label [text]="'Push Up Goal: ' + data.pushUpGoal"></Label>
-    <Label [text]="'Sit Up Goal: ' + data.sitUpGoal"></Label>
+    <GridLayout class="score-layout" row="1" columns="*, *" rows="auto, auto">
+        <Label col="0" row="0" text="Push Ups"></Label>
+        <Label col="0" row="1" [text]="todayPushUps + ' / ' + data.pushUpGoal"></Label>
 
-    <StackLayout>
-        <Label text="Push Ups:"></Label>
-        <TextField></TextField>
+        <Label col="1" row="0" text="Sit Ups"></Label>
+        <Label col="1" row="1" [text]="todaySitUps + ' / ' + data.sitUpGoal"></Label>
+    </GridLayout>
+
+    <GridLayout class="action-layout" row="2" columns="*, *" rows="auto, auto, auto">
+        <Label col="0" row="0" text="Push Ups"></Label>
+        <TextField col="0" row="1" keyboardType="number" returnKeyType="next" (textChange)="onTextChange($event, 0)"></TextField>
+
+        <Label col="1" row="0" text="Sit Ups"></Label>
+        <TextField col="1" row="1" keyboardType="number" (returnPress)="submitTap()" (textChange)="onTextChange($event, 1)"></TextField>
+
+        <Button col="0" colSpan="2" row="2" text="Submit" returnKeyType="done" (tap)="submitTap()"></Button>
+    </GridLayout>
+
+    <StackLayout class="bottom-layout" row="4">
+        <Label [text]="'Last 7 day average: ' + data.pushUpGoal"></Label>
+        <Label [text]="'Goal Completed Streak: ' + data.pushUpGoal + ' days'"></Label>
     </StackLayout>
-
-    <StackLayout>
-        <Label text="Sit Ups:"></Label>
-        <TextField></TextField>
-    </StackLayout>
-    
-</StackLayout>
+</GridLayout>

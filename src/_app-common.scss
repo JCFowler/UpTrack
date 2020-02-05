@@ -20,6 +20,13 @@
     font-weight: 400;
 }
 
+.hr-light {
+    background-color: #dddddd;
+    height: 1;
+    margin-top: 5;
+    margin-bottom: 5;
+}
+
 // Custom tabstrip item class
 .navigation__item {
     &:active,
