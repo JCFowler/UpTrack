@@ -1,0 +1,23 @@
+
+.layout {
+    background-color: #ef5350;
+
+    .date {
+        text-align: left;
+    }
+
+    .data {
+        margin-top: -10;
+    }
+
+    Label {
+        color: black;
+        font-size: 20;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    &.completed {
+        background-color: #81c784;
+    }
+}

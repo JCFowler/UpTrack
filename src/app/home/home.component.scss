@@ -7,16 +7,26 @@
 }
 
 .score-layout {
-    background-color: #dddddd;
+    background-color: lighten( #D7D7D7, 13% );
+    border-color: #D84039;
     padding: 20;
-    margin-top: 20;
-    margin-bottom: 20;
+    margin: 20;
+    border-radius: 10;
+    border-width: 2;
 
     Label {
-        color: #1e88e5;
-        font-size: 24;
+        color: #D84039;
+        font-size: 26;
         font-weight: 400;
         text-align: center;
+
+        &.completed {
+            color: #06CE6A;
+        }
+    }
+
+    &.completed {
+        border-color: #06CE6A;
     }
 }
 
@@ -50,9 +60,18 @@
     }
 }
 
-.bottom-layout {
-    color: #212121;
-    font-size: 20;
-    text-align: center;
-    margin-bottom: 20;
+.change-layout {
+    Button {
+        background-color: #1e88e5;
+        color: white;
+        border-radius: 5;
+        margin-bottom: 20;
+        height: 40;
+        font-size: 16;
+        width: 40%;
+
+        &:highlighted {
+            opacity: .6;
+        }
+    }
 }

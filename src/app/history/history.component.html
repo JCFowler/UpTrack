@@ -1,9 +1,17 @@
 <GridLayout>
     <ListView *ngIf="data$ | async; let data" [items]="data.days">
         <ng-template let-day="item">
-            <StackLayout>
-                <Label [text]="day.date | date"></Label>
-            </StackLayout>
+            <!-- <GridLayout rows="3, auto, 3" padding="0" margin="0"> -->
+                <GridLayout class="layout" [class.completed]="day.pushUpComplete && day.sitUpComplete" row="1" columns="*, *, *" rows="auto, auto">
+                    <Label class="date" col="0" row="0" rowSpan="2" [text]="day.date | date"></Label>
+
+                    <Label col="1" row="0" text="Push Ups:"></Label>
+                    <Label class="data" col="1" row="1" [text]="day.pushUps + ' / ' + data.pushUpGoal"></Label>
+
+                    <Label col=2 row="0" text="Sit Ups:"></Label>
+                    <Label class="data" col="2" row="1" [text]="day.sitUps + ' / ' + data.sitUpGoal"></Label>
+                </GridLayout>
+            <!-- </GridLayout> -->
         </ng-template>
     </ListView>
 </GridLayout>

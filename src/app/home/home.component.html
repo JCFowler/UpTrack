@@ -1,26 +1,26 @@
 <GridLayout *ngIf="data$ | async; let data" rows="auto, auto, auto, *, auto">
     <Label class="main-label" row="0" [text]="today | date"></Label>
 
-    <GridLayout class="score-layout" row="1" columns="*, *" rows="auto, auto">
-        <Label col="0" row="0" text="Push Ups"></Label>
-        <Label col="0" row="1" [text]="todayPushUps + ' / ' + data.pushUpGoal"></Label>
+    <GridLayout class="score-layout" [class.completed]="data.days[0] && data.days[0].pushUpComplete && data.days[0].sitUpComplete" row="1" columns="*, *" rows="auto, auto">
+        <Label [class.completed]="data.days[0] && data.days[0].pushUpComplete" col="0" row="0" text="Push Ups"></Label>
+        <Label [class.completed]="data.days[0] && data.days[0].pushUpComplete" col="0" row="1" [text]="todayPushUps + ' / ' + data.pushUpGoal"></Label>
 
-        <Label col="1" row="0" text="Sit Ups"></Label>
-        <Label col="1" row="1" [text]="todaySitUps + ' / ' + data.sitUpGoal"></Label>
+        <Label [class.completed]="data.days[0] && data.days[0].sitUpComplete" col="1" row="0" text="Sit Ups"></Label>
+        <Label [class.completed]="data.days[0] && data.days[0].sitUpComplete" col="1" row="1" [text]="todaySitUps + ' / ' + data.sitUpGoal"></Label>
     </GridLayout>
 
     <GridLayout class="action-layout" row="2" columns="*, *" rows="auto, auto, auto">
         <Label col="0" row="0" text="Push Ups"></Label>
-        <TextField col="0" row="1" keyboardType="number" returnKeyType="next" (textChange)="onTextChange($event, 0)"></TextField>
+        <TextField col="0" row="1" keyboardType="number" returnKeyType="next" (loaded)="textFieldLoaded($event)"></TextField>
 
         <Label col="1" row="0" text="Sit Ups"></Label>
-        <TextField col="1" row="1" keyboardType="number" (returnPress)="submitTap()" (textChange)="onTextChange($event, 1)"></TextField>
+        <TextField col="1" row="1" keyboardType="number" (returnPress)="submitTap()" (loaded)="textFieldLoaded($event)"></TextField>
 
         <Button col="0" colSpan="2" row="2" text="Submit" returnKeyType="done" (tap)="submitTap()"></Button>
     </GridLayout>
 
-    <StackLayout class="bottom-layout" row="4">
-        <Label [text]="'Last 7 day average: ' + data.pushUpGoal"></Label>
-        <Label [text]="'Goal Completed Streak: ' + data.pushUpGoal + ' days'"></Label>
-    </StackLayout>
+    <GridLayout class="change-layout" columns="*, *" row="4">
+        <Button col="0" text="Push Up Goal" (tap)="changeGoal(0)"></Button>
+        <Button col="1" text="Sit Up Goal" (tap)="changeGoal(1)"></Button>
+    </GridLayout>
 </GridLayout>
